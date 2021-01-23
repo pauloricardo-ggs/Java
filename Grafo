@@ -1,0 +1,54 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Exercicio7 {
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        int qtdVertices = quantidadeVertices();
+        int qtdArestas = verticesAdjacentes();
+        int complexidade = complexidade(qtdVertices, qtdArestas);
+
+        System.out.println("O grafo tem complexidade " + complexidade + ".");
+    }
+
+
+    static int quantidadeVertices() throws FileNotFoundException {
+        try (Scanner scanner = new Scanner (new File("src/grafo-25000.txt"))){
+
+            int qtdVertices = 0;
+
+            while(scanner.hasNext()){
+                scanner.nextLine();
+                qtdVertices++;
+            }
+            System.out.println("O grafo tem " + qtdVertices + " vértices.\n");
+            return qtdVertices;
+        }
+    }
+
+
+    static int verticesAdjacentes() throws FileNotFoundException {
+        try (Scanner scanner = new Scanner (new File("src/grafo-25000.txt"))){
+
+            int qtdArestasTotal = 0;
+            while(scanner.hasNext()){
+                String linha = scanner.nextLine();
+                String[] vertice = linha.split("\t");
+
+                int qtdVertAdj = vertice.length-1;
+                qtdArestasTotal += qtdVertAdj;
+
+                System.out.println("O vértice " + '"' + vertice[0] + '"' + " tem " + qtdVertAdj + " vértices adjacentes.");
+            }
+            System.out.println();
+            return qtdArestasTotal;
+        }
+    }
+
+
+    static int complexidade(int qtdVertices, int qtdArestas){
+        return qtdVertices + qtdArestas;
+    }
+}
