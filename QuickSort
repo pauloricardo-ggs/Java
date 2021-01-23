@@ -1,0 +1,51 @@
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[] numeros = {5, 7, 2, 9, 6, 8, 4, 1, 3, 0};
+
+        //chama o método pela primeira vez sendo o início, a posição 0, e o fim o index do ultimo elemento do vetor
+        quickSort(numeros, 0, numeros.length-1);
+    }
+
+    static void quickSort(int[] numeros, int inicio, int fim) {
+        if (fim > inicio) {
+            // Separa os dados em duas partições (números menores e maiores que o pivo)
+            int pivo = particionar(numeros, inicio, fim);
+
+            // Chama a função para as duas metades
+            quickSort(numeros, inicio, pivo - 1);
+            quickSort(numeros, pivo + 1, fim);
+        }
+    }
+
+    static int particionar (int[] numeros, int inicio, int fim){
+        int esq = inicio, dir = fim, pivo = numeros[inicio], aux;
+
+        while (esq < dir){
+            // Avança a posição da esquerda
+            while (numeros[esq] <= pivo)
+                esq++;
+            // Volta a posição da direita
+            while (numeros[dir] > pivo)
+                dir--;
+            // Se esquerda for menor que a direita, troca os dois de lugar
+            if (esq < dir){
+                aux = numeros[esq];
+                numeros[esq] = numeros[dir];
+                numeros[dir] = aux;
+            }
+        }
+        // O inicio vai receber o último valor da direita
+        numeros[inicio] = numeros[dir];
+        // O valor da direita se torna o pivo
+        numeros[dir] = pivo;
+
+        System.out.println(Arrays.toString(numeros));
+
+        return dir;
+    }
+
+}
