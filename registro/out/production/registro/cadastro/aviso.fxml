@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cadastro.Aviso">
+   <children>
+      <Button layoutX="117.0" layoutY="95.0" mnemonicParsing="false" onAction="#OkBt" text="OK" />
+      <Label layoutX="32.0" layoutY="50.0" text="Um ou mais campos estão em branco!" />
+   </children>
+</AnchorPane>

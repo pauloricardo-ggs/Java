@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="165.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="supermercado.ProdutoCadastrado">
+   <children>
+      <Button layoutX="137.0" layoutY="112.0" mnemonicParsing="false" onAction="#okButtonAction" text="OK" />
+      <Label layoutX="47.0" layoutY="51.0" prefHeight="32.0" prefWidth="213.0" text="Produto Cadastrado!">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
