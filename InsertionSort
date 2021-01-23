@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		// Inicializa o scanner
+		Scanner scanner = new Scanner(System.in);
+		
+		// Pega a quantidade de números que o usuário quer ordenar
+		System.out.print("Quantos números deseja ordenar? ");
+		int qtd = scanner.nextInt();
+		
+		// Cria um array "números" cujo tamanho é a quantidade dada pelo usuário
+		int[] numeros = new int[qtd];
+		
+		// Pula linha
+		System.out.println();
+		
+		// Pega os números dados pelo usuário e armazena no array "números" na ordem dada pelo mesmo
+		for(int i=0; i<qtd; i++) {
+			System.out.print("Insira o "+(i+1)+"° número ");
+			numeros[i] = scanner.nextInt();
+		}
+		
+		// Pula linha
+		System.out.println();
+		
+		// Imprime os números dados pelo usuário na ordem dada pelo mesmo
+		System.out.print("Os números são ");
+		printNumeros(numeros);
+		
+		// Ordena os números pelo Insersion Sort
+		for(int i=1; i<numeros.length; i++) {
+			// Cria uma variável "j" para armazenar a casa do array "numeros" que está sendo verificada
+			int j = i;
+			// Cria uma variável "aux" para armazenar o valor da casa do array "numeros" que está sendo verificada
+			int aux = numeros[i];
+			
+			// Enquanto não checou todas as casas do array "numeros" e o valor da casa atual for maior que o valor verificado
+			while ((j>0) && (numeros[j-1]>aux)) {
+				// O valor irá uma casa a mais
+				numeros[j] = numeros[j-1];
+				j--;
+			}
+			
+			// O valor verificado (aux) será armazenado na casa j, cujo valor da casa j-1 será menor ou igual ao aux e o valor da casa j+1 será maior ou igual ao aux
+			numeros[j] = aux;
+		}
+		
+		// Pula linha
+		System.out.println();
+		
+		// Imprime os números ordenados pelo Insertion Sort
+		System.out.print("Os números ordenados são ");
+		printNumeros(numeros);
+
+	}
+	
+	// Imprime o array "numeros"
+	public static void printNumeros(int[] numeros) {
+		for(int i=0; i<numeros.length; i++) {
+			System.out.print(numeros[i]);
+			if (i<numeros.length-1) {System.out.print(", ");}
+		}
+	}
+	
+}
