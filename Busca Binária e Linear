@@ -1,0 +1,110 @@
+package exercicio_5_busca.binaria.e.linear;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int[] dados = null;
+        boolean rodando = true;
+        long tempoInicial, tempoFinal, tempoLinear, tempoBinaria;
+
+        while(rodando){
+            System.out.println("\n[1] Inserir dados");
+            System.out.println("[2] Procurar dado através das buscas linear e binária");
+            System.out.println("[3] Sair");
+            int menu = scanner.nextInt();
+
+            switch(menu){
+
+                case 1:
+                    dados = null;
+                    System.out.print("\nQuantos dados deseja adicionar? ");
+                    int qtd = scanner.nextInt();
+                    dados = new int[qtd];
+                    inserirDados(qtd, dados);
+                    break;
+
+                case 2:
+                    Scanner scanner2 = new Scanner(System.in);
+                    if (dados != null) {
+                        System.out.print("\nQual dado está procurando? ");
+                        int procura = scanner2.nextInt();
+
+                        tempoInicial = System.currentTimeMillis();
+                        int indexL = buscaLinear(procura, dados);
+                        tempoFinal = System.currentTimeMillis();
+                        tempoLinear = tempoFinal-tempoInicial;
+
+                        bubbleSort(dados);
+
+                        tempoInicial = System.currentTimeMillis();
+                        int indexB = buscaBinaria(procura, dados);
+                        tempoFinal = System.currentTimeMillis();
+                        tempoBinaria = tempoFinal-tempoInicial;
+
+                        if (indexB != -1 && indexL != -1) {
+                            System.out.println("\nO dado que procura, pela busca linear levou "+tempoLinear+"ms e está no index "+indexL+", enquanto pela busca binária levou "+tempoBinaria+"ms e está no index "+indexB);
+                        }
+                        else {
+                            System.out.println("\nO dado que procura não está cadastrado");
+                        }
+                    }
+                    else {
+                        System.out.println("Não há dados cadastrados!");
+                    }
+                    break;
+                default:
+                    rodando = false;
+                    break;
+            }
+        }
+    }
+
+    public static void inserirDados(int qtd, int[] dados){
+        Scanner scanner = new Scanner(System.in);
+        for (int i=0; i<qtd; i++) {
+            System.out.print("Insira o "+(i+1)+"° dado: ");
+            dados[i] = scanner.nextInt();
+        }
+    }
+
+    public static int buscaLinear(int procura, int[] dados) {
+        for(int i=0; i<dados.length; i++) {
+            if (dados[i] == procura) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int buscaBinaria(int procura, int[] dados) {
+        int primeiro = 0;
+        int ultimo = dados.length-1;
+
+        while (primeiro <= ultimo) {
+            int meio = (int)(primeiro + ultimo)/2;
+            if (procura == dados[meio]) {
+                return meio;
+            }else if(procura < dados[meio]) {
+                ultimo = meio - 1;
+            }else if(procura > dados[meio]) {
+                primeiro = meio + 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void bubbleSort(int[] dados) {
+        for (int i=0; i<dados.length; i++) {
+            for (int j=0; j<dados.length-1-i; j++) {
+                if(dados[j] > dados[j+1]) {
+                    int aux = dados[j];
+                    dados[j] = dados[j+1];
+                    dados[j+1] = aux;
+                }
+            }
+        }
+    }
+
+}
