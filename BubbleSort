@@ -1,0 +1,17 @@
+def bubbleSort(lista):
+    # Repetir até o final da lista
+    for i in range(0,len(lista)-1,1):
+        # Pega cada elemento da lista
+        for j in range(0,(len(lista)-1-i),1):
+            # Compara se o número atual é maior que o próximo
+            if lista[j]>lista[j+1]:
+                # Armazena o número atual na variável auxiliar
+                aux = lista[j]
+                # O próximo número (j+1) se torna o número atual (j)
+                lista[j] = lista[j+1]
+                # O número atual (armazenado no auxiliar) se torna o próximo número
+                lista[j+1] = aux
+
+lista = [54,26,93,17,77,31,44,55,20,88,24,51,15,1]
+bubbleSort(lista)
+print(lista)
