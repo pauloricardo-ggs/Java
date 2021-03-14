@@ -69,7 +69,7 @@ public class Teste {
 
     static Vetor testeAdiciona(Vetor<Integer> vetor, int teste){
         int posicao=9;
-        if (teste==8) posicao=3;
+        if (teste==8) posicao=15;
         else if (teste==9) posicao=5;
         vetor.adiciona(teste, posicao);
         return vetor;

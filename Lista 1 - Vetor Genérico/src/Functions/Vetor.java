@@ -15,10 +15,6 @@ public class Vetor<T> {
         this.tamanho = tamanho;
     }
 
-    public boolean posicaoValida(int posicao){
-        return (posicao >= 0 && posicao <= this.vetor.length);
-    }
-
     public boolean existeDado(int posicao){
         return (this.vetor[posicao] != null);
     }
@@ -44,34 +40,34 @@ public class Vetor<T> {
     }
 
     public void adiciona(T elemento, int posicao){
-        if (!posicaoValida(posicao)) System.out.println("Posição inválida");
-        else {
+        try {
             if (Tamanho() == this.vetor.length) Redimensiona();
-            if (!existeDado(posicao)){
+            if (!existeDado(posicao)) {
                 this.vetor[posicao] = elemento;
                 this.totalElementos++;
                 moveEsq();
-            }
-            else{
+            } else {
                 Iterador it = new Iterador(this.vetor);
 
-                int i=0;
-                while (it.hasNext()){
+                int i = 0;
+                while (it.hasNext()) {
                     it.next();
-                    if (this.vetor[i+1] == null) {
-                        this.vetor[i+1] =  this.vetor[i];
-                        if (i==posicao) {
+                    if (this.vetor[i + 1] == null) {
+                        this.vetor[i + 1] = this.vetor[i];
+                        if (i == posicao) {
                             this.vetor[i] = elemento;
                             this.totalElementos++;
                             break;
                         }
                         this.vetor[i] = null;
                         i--;
+                    } else {
+                        i++;
                     }
-                    else{ i++;}
                 }
             }
         }
+        catch (Exception ArrayIndexOutOfBoundsException) { System.out.println("A posição não pôde ser alcançada");}
     }
 
     public void adicionaInicio(T elemento){
@@ -118,35 +114,41 @@ public class Vetor<T> {
     }
 
     public void remove(int posicao){
-        if (!posicaoValida(posicao)) System.out.println("Posição inválida");
-        else if (vazio()) System.out.println("O vetor está vazio");
-        else if (!existeDado(posicao)) System.out.println("Não existe dados nessa posição");
-        else {
-            this.vetor[posicao] = null;
-            this.totalElementos--;
-            moveEsq();
+        try {
+            if (vazio()) System.out.println("O vetor está vazio");
+            else if (!existeDado(posicao)) System.out.println("Não existe dados nessa posição");
+            else {
+                this.vetor[posicao] = null;
+                this.totalElementos--;
+                moveEsq();
+            }
         }
+        catch (Exception ArrayIndexOutOfBoundsException) { System.out.println("A posição não pôde ser alcançada");}
     }
 
     public void removeInicio(){
-        if (!posicaoValida(0)) System.out.println("Posição inválida");
-        else if (vazio()) System.out.println("O vetor está vazio");
-        else if (!existeDado(0)) System.out.println("Não existe dados nessa posição");
-        else {
-            this.vetor[0] = null;
-            this.totalElementos--;
-            moveEsq();
+        try {
+            if (vazio()) System.out.println("O vetor está vazio");
+            else if (!existeDado(0)) System.out.println("Não existe dados nessa posição");
+            else {
+                this.vetor[0] = null;
+                this.totalElementos--;
+                moveEsq();
+            }
         }
+        catch (Exception ArrayIndexOutOfBoundsException) { System.out.println("A posição não pôde ser alcançada");}
     }
 
     public void removeFim(){
-        if (!posicaoValida(totalElementos-1)) System.out.println("Posição inválida");
-        else if (vazio()) System.out.println("O vetor está vazio");
-        else if (!existeDado(totalElementos-1)) System.out.println("Não existe dados nessa posição");
-        else{
-            this.vetor[totalElementos-1] = null;
-            this.totalElementos--;
+        try {
+            if (vazio()) System.out.println("O vetor está vazio");
+            else if (!existeDado(totalElementos - 1)) System.out.println("Não existe dados nessa posição");
+            else {
+                this.vetor[totalElementos - 1] = null;
+                this.totalElementos--;
+            }
         }
+        catch (Exception ArrayIndexOutOfBoundsException) { System.out.println("A posição não pôde ser alcançada");}
     }
 
     public void Redimensiona(){
@@ -160,12 +162,14 @@ public class Vetor<T> {
     }
 
     public T Recupera(int posicao){
-        if (!posicaoValida(posicao)) System.out.println("Posição inválida");
-        else if (vazio()) System.out.println("O vetor está vazio");
-        else if (!existeDado(posicao)) System.out.println("Não existe dados nessa posição");
-        else {
-            return this.vetor[posicao];
+        try {
+            if (vazio()) System.out.println("O vetor está vazio");
+            else if (!existeDado(posicao)) System.out.println("Não existe dados nessa posição");
+            else {
+                return this.vetor[posicao];
+            }
         }
+        catch (Exception ArrayIndexOutOfBoundsException) { System.out.println("A posição não pôde ser alcançada");}
         return null;
     }
 
